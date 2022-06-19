@@ -1,0 +1,61 @@
+.Form{
+margin: auto;
+padding-left: 10%;
+padding-right: 10%;
+padding-top: 2%;
+padding-bottom: 2%;
+margin-left: 10%;
+margin-right:10% ;
+background: #FFF2CD;
+border: 1px black solid;
+
+}
+.HR{
+    border: 2px #C16300 solid;
+    ;
+}
+#v{
+
+    height: 100%;
+    border-right:1px black dashed;
+    padding: 0%;
+}
+.CountT{
+    color:#DCD3DF;
+    font-weight: 500;
+}
+.Task{
+
+    margin-left:3% ;
+    margin-right:3%;
+}
+.prio{
+
+    color: #C22271;
+    background: pink;
+    font-weight: 500;
+}
+.btn{
+    border: none;
+    font-size: 150%;
+    color:#E68524;
+    font-weight: 600;
+}
+.btnForm{
+    background: #FE8000;
+    color: #FFFFF8;
+    border: none;
+    font-size: 120%;
+    font-weight: 800;
+    padding: 5%;
+    border-radius: 8%;
+}
+.lbForm{
+    font-size: 120%;
+}
+.btndel{
+    border: none;
+    font-size: 130%;
+    color:red;
+    font-weight: 600;
+}
