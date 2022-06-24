@@ -1,7 +1,7 @@
 <?php
 class CompleteController{
 function Complete(){
-    Compl();
+    compl();
 }
 
 }
