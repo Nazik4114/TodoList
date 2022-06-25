@@ -1,4 +1,11 @@
 <?php
+/**
+ * Dump and die
+ *
+ * @param boolean $flag
+ * @param array $arguments
+ * @return void
+ */
 function dd($flag = true, ...$arguments) {
     if (count($arguments)) {
     echo "<pre>";  
@@ -9,6 +16,13 @@ function dd($flag = true, ...$arguments) {
     if ($flag) exit;
     }
     }
+        /**
+     * This method building  controller path and returned class name and method
+     *
+     * @param array $routes
+     * @param string $action
+     * @return array
+     */
  function route(array $routes, $action) {
     if (array_key_exists($action, $routes)) {
 
@@ -25,6 +39,12 @@ function dd($flag = true, ...$arguments) {
         }
     }
 } 
+/**
+ * Adds task to $_COOKIE
+ *
+ * @param array $task
+ * @return void
+ */
 function setCookies(array $task){
     if(strlen($task['task'])==0){
         header('Location:/?action=home');
@@ -48,7 +68,11 @@ $_COOKIE['todos'][]=[
 setcookie('todos',json_encode($_COOKIE['todos'], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
 header('Location:/?action=home');
 }
-
+/**
+ * Returns tasks from $_COOKIE
+ *
+ * @return array
+ */
 function getTodos(){
 $todos_list=[];
 if(!isset($_COOKIE['todos'])){
@@ -59,6 +83,11 @@ $todos_list[]=$todo;
 }
 return $todos_list;
 }
+/**
+ * Returns the number of tasks in $_COOKIE
+ *
+ * @return int
+ */
 function countTasks (){
 $i=0;
     if(!isset($_COOKIE['todos'])){
@@ -75,6 +104,12 @@ $i=0;
     }
 
 }
+/**
+ * Check whether the task is completed 
+ *
+ * @param array $todo
+ * @return boolean
+ */
 function isComplete($todo){
     if($todo['complated']==true){
         return true;
@@ -82,6 +117,11 @@ function isComplete($todo){
     return false;
     }
 }
+/**
+ * Throws task in array "completed"
+ *
+ * @return void
+ */
 function compl(){
     if(!isset($_GET['id'])){
 
@@ -105,9 +145,13 @@ function compl(){
         header('Location:/?action=home');
     }
 }
+/**
+ * Deletes the task
+ *
+ * @return void
+ */
 function del(){
     if(!isset($_GET['id'])){
-
         header('Location:/?action=home');
         die();
     } else{
@@ -126,6 +170,12 @@ function del(){
     setcookie('todos',json_encode($_COOKIE['todos'], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
     header('Location:/?action=home');
 }
+/**
+ * Returns sorted tasks by priority
+ *
+ * @param array $todos
+ * @return array
+ */
 function sortPrio($todos){
     do {
         $swapped = false;
