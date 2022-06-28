@@ -135,11 +135,7 @@ function compl(){
         }
 
         $id=$_GET['id'];
-        // for ($i=0; $i < count($_COOKIE['todos']); $i++) { 
-        //     if($_COOKIE['todos'][$i]['id']==$id){
-        //          $_COOKIE['todos'][$i]['complated']=!($_COOKIE['todos'][$i]['complated']);
-        //      }
-        // }
+
         foreach ($_COOKIE['todos'] as $key => $value) {
             if($value['id']==$id){
                 complated($key);
@@ -175,16 +171,12 @@ function del(){
     } else{
         $_COOKIE['todos']=json_decode($_COOKIE['todos'],true);
     }
-    // for ($i=0; $i < count($_COOKIE['todos']); $i++) { 
-    //     if($_COOKIE['todos'][$i]['id']==$id){
-    //          unset($_COOKIE['todos'][$i]);
-    //      }
+
          foreach ($_COOKIE['todos'] as $key => $value) {
             if($value['id']==$id){
                 unset($_COOKIE['todos'][$key]);
             }
          }
-  //  }
     setcookie('todos',json_encode($_COOKIE['todos'], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
     header('Location:/?action=home');
 }
