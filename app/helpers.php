@@ -16,29 +16,29 @@ function dd($flag = true, ...$arguments) {
     if ($flag) exit;
     }
     }
-        /**
+
+/**
      * This method building  controller path and returned class name and method
      *
      * @param array $routes
      * @param string $action
      * @return array
      */
- function route(array $routes, $action) {
-    if (array_key_exists($action, $routes)) {
-
-        list($controlerClass,$method)=explode('@',$routes[$action]);
-        $controllerPath = CONTROLLERS_PATH . "/" . $controlerClass . '.php';
-        if (is_readable($controllerPath)) {
+    function getRouteHandler(array $routes, $action) {
+        if (array_key_exists($action, $routes)) {
+    
+            list($controlerClass,$method)=explode('@',$routes[$action]);
+            $controllerPath = CONTROLLERS_PATH . "/" . $controlerClass . '.php';
+      
+            if(!is_readable($controllerPath)) {
+                throw new Exception("Undefined Controller {$controllerPath}");
+            }
+    
             require_once $controllerPath;
-
-            $ObjControler=new $controlerClass;
-            $ObjControler->$method();
-
-        } else {
-            die("Undefined Controller {$controllerPath}");
+    
+            return [new $controlerClass, $method];
         }
-    }
-} 
+    } 
 /**
  * Adds task to $_COOKIE
  *
@@ -135,15 +135,28 @@ function compl(){
         }
 
         $id=$_GET['id'];
-        
-        for ($i=0; $i < Count($_COOKIE['todos']); $i++) { 
-            if($_COOKIE['todos'][$i]['id']==$id){
-                 $_COOKIE['todos'][$i]['complated']=!($_COOKIE['todos'][$i]['complated']);
-             }
-        }
+        // for ($i=0; $i < count($_COOKIE['todos']); $i++) { 
+        //     if($_COOKIE['todos'][$i]['id']==$id){
+        //          $_COOKIE['todos'][$i]['complated']=!($_COOKIE['todos'][$i]['complated']);
+        //      }
+        // }
+        foreach ($_COOKIE['todos'] as $key => $value) {
+            if($value['id']==$id){
+                complated($key);
+            }
+         }
        setcookie('todos',json_encode($_COOKIE['todos'], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
         header('Location:/?action=home');
     }
+}
+/**
+ * Checked value completed
+ *
+ * @param int $id
+ * @return void
+ */
+function complated($id){
+    $_COOKIE['todos'][$id]['complated']=!($_COOKIE['todos'][$id]['complated']);
 }
 /**
  * Deletes the task
@@ -162,11 +175,16 @@ function del(){
     } else{
         $_COOKIE['todos']=json_decode($_COOKIE['todos'],true);
     }
-    for ($i=0; $i < Count($_COOKIE['todos']); $i++) { 
-        if($_COOKIE['todos'][$i]['id']==$id){
-             unset($_COOKIE['todos'][$i]);
+    // for ($i=0; $i < count($_COOKIE['todos']); $i++) { 
+    //     if($_COOKIE['todos'][$i]['id']==$id){
+    //          unset($_COOKIE['todos'][$i]);
+    //      }
+         foreach ($_COOKIE['todos'] as $key => $value) {
+            if($value['id']==$id){
+                unset($_COOKIE['todos'][$key]);
+            }
          }
-    }
+  //  }
     setcookie('todos',json_encode($_COOKIE['todos'], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
     header('Location:/?action=home');
 }
