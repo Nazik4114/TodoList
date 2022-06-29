@@ -30,7 +30,6 @@
             <?php require_once VIEWS_PATH."/Pages/Tasks.php"?>
             <h3>Виконані завдання </h3>
             <?php require_once VIEWS_PATH."/Pages/CompleteTask.php"?>
-           <!-- <?=dd(false,$_COOKIE['todos'])?> -->
             </div>
             </div>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
