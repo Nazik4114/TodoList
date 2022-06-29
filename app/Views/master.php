@@ -27,9 +27,9 @@
         <div class="col">
           <div class="Task">
             <h3>Мої завдання <span class="CountT">(<?=CountTasks()?>)</span></h3>
-            <?=require_once VIEWS_PATH."/Pages/Tasks.php"?>
+            <?php require_once VIEWS_PATH."/Pages/Tasks.php"?>
             <h3>Виконані завдання </h3>
-            <?=require_once VIEWS_PATH."/Pages/CompleteTask.php"?>
+            <?php require_once VIEWS_PATH."/Pages/CompleteTask.php"?>
            <!-- <?=dd(false,$_COOKIE['todos'])?> -->
             </div>
             </div>    
